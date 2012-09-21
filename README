@@ -1,0 +1,30 @@
+Get Translate Toolkit from their site
+http://sourceforge.net/projects/translate/files/Translate%20Toolkit/
+Or if you prefer the file "translate-toolkit_1.9.0-1_all.deb" is available in the "extension/convert_file_ts_to_po/info/" folder too.
+sudo dpkg -i translate-toolkit_1.9.0-1_all.deb to install
+
+This extension will use these functions
+http://translate.sourceforge.net/wiki/toolkit/ts2po?redirect=1
+ts2po translation_extracted.ts translation_extracted.po
+po2ts translation_extracted.po translation_extracted.ts
+
+
+php runcronjobs.php -d -c extract_ts_file_from_original_ts_file
+This CRON used as a CLI extract data from all translation.ts having the specified context into a file translation_extracted.ts.
+So as to allow PoEdit to used key specfied several times, we temporary add the context to the .po key using this format (CONTEXT)KEY
+
+You then can send all translation_extracted.po files to translation using PoEdit
+
+Once .po file are completed, you can put back the .po file where they were generated first and launch the CRON bellow
+php runcronjobs.php -d -c include_ts_file_into_original_ts_file
+It will insert all data from the .po file to the translation.ts file in the same folder. And this for each translation.ts file you can have in your extensions and share files.
+
+
+Don't forget to add your extension in your site.ini settings 
+
+[ExtensionSettings]
+ActiveExtensions[]
+ActiveExtensions[]=convert_file_ts_to_po
+
+And to change the context in extension/convert_file_ts_to_po/classes/I18nFile.php
+CONST CONTEXT_NAME = 'xxx';
