@@ -1,0 +1,15 @@
+<?php /* #?ini charset="utf-8"?
+
+[TemplateSettings]
+ExtensionAutoloadPath[]=periscope_ts2po
+
+[SearchSettings]
+SearchViewHandling=template
+
+[RegionalSettings]
+TranslationExtensions[]=periscope_ts2po
+
+[ExtensionSettings]
+DesignExtensions[]=periscope_ts2po
+
+*/ ?>
